@@ -133,7 +133,7 @@ Partial Class MainWindow
         'CheckBox2
         '
         Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Location = New System.Drawing.Point(278, 145)
+        Me.CheckBox2.Location = New System.Drawing.Point(280, 145)
         Me.CheckBox2.Name = "CheckBox2"
         Me.CheckBox2.Size = New System.Drawing.Size(94, 17)
         Me.CheckBox2.TabIndex = 10
