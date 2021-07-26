@@ -154,7 +154,10 @@ Public Class MainWindow
 
         ElseIf (e.KeyCode And Not Keys.Modifiers) = Keys.F3 AndAlso e.Modifiers = Keys.Control Then
 
-            CheckBox1.Visible = True
+            If ProgName.Text = "123" Then
+                CheckBox1.Enabled = True
+                CheckBox2.Enabled = True
+            End If
 
         End If
     End Sub
