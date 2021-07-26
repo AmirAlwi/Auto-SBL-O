@@ -40,7 +40,7 @@
 
         wrt.WriteLine("Summary Report")
 
-        For i As Integer = 0 To CodeLoc(2)
+        For i As Integer = 0 To LastInfoLine - 3
             wrt.WriteLine(infos(0, i).PadLeft(16) & "    " & Maininfo(1, i))
         Next
 
