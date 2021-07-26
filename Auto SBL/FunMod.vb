@@ -206,7 +206,7 @@
                 If lines(n) = vbNullString Then
 
                     infoline = n
-
+                    LastInfoLine = n
                     Exit For
 
                 End If
