@@ -110,7 +110,7 @@ Public Class MainWindow
         For i As Integer = 0 To locindex - 1
             If LocSortByTime(i) IsNot vbNullString Then
 
-                LineMark = Readfile(LocSortByTime(i), i) 'Binline, startline , siteline
+                LineMark = Readfile(LocSortByTime(i), i) 'BinStartLine Binline, startline , siteline
 
                 ProcessBinD(LineMark(0), LineMark(1), SummaryContent, i)
 

@@ -271,9 +271,9 @@
                 Next
             End If 'add sum info
 
-            BinStartLine = SearchStartEndLine(CodeLoc(2), lines.Length, lines)
+            BinStartLine = SearchStartEndLine(CodeLoc(2), lines.Length, lines, "Bin Total") + 3
 
-            BinLine = SearchStartEndLine(BinStartLine, lines.Length, lines, "Bin Total") + 3
+            BinLine = SearchStartEndLine(BinStartLine, lines.Length, lines)
 
             wrtlog(BinLine.ToString, 1)
 
