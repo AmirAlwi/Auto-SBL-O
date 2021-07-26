@@ -6,17 +6,20 @@
         Dim check As Boolean = False
 
         'check different lot? and summary code
-        If locindex > 1 Then
+        If MainWindow.CheckBox2.Checked Then
 
-            For i As Integer = locindex To 2 Step -1
+            If locindex > 1 Then
 
-                If Maininfo(i, 2).ToString <> Maininfo(i - 1, 2).ToString Then
+                For i As Integer = locindex To 2 Step -1
 
-                    wrtlog("mixxed Lot , exit flow " & Maininfo(2, 2).ToString & "  " & Maininfo(1, 2).ToString, 1)
-                    ResetData()
-                    Exit Sub
-                End If
-            Next
+                    If Maininfo(i, 2).ToString <> Maininfo(i - 1, 2).ToString Then
+
+                        wrtlog("mixxed Lot , exit flow " & Maininfo(2, 2).ToString & "  " & Maininfo(1, 2).ToString, 1)
+                        ResetData()
+                        Exit Sub
+                    End If
+                Next
+            End If
         End If
 
         Dim temp As String() = Maininfo(1, CodeLoc(1)).ToString.Split(CType(",", Char()), StringSplitOptions.RemoveEmptyEntries)

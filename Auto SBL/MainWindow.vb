@@ -180,5 +180,6 @@ Public Class MainWindow
     Private Sub Label2_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles Label2.MouseDoubleClick
         MsgBox("Penang 2021 by Mayden @ UTP" & vbNewLine & "mayden@gmail.com")
     End Sub
+
 End Class
 
