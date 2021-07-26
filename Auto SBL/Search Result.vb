@@ -49,7 +49,7 @@
             AutoSelect(name, storeloca, lengthofloc, y)
 
             If MainWindow.CheckBox1.Checked Then
-                MsgBox(ListBox.SelectedItems.Count & " file selected")
+                'MsgBox(ListBox.SelectedItems.Count & " file selected")
                 Me.Sel_Click(Me, EventArgs.Empty) 'call after auto selec function
             End If
         End If
