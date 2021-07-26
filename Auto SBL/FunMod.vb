@@ -12,6 +12,7 @@
     Public LotInfoLoc(8) As Integer
     Public CodeLoc(3) As Integer
     Public SortLoc(300) As Integer
+    Public LastInfoLine As Integer = 0
 
     Public Function WriteReadtxt(sel As Integer,
                                  path As String,
@@ -180,6 +181,7 @@
 
     Public Function Readfile(filelocation As String, index As Integer) As Integer() ' read lot sum info        
 
+        Dim BinStartLine As Integer = 0
         Dim BinLine As Integer = 0
         Dim infoline As Integer = 0
         Dim Siteline As Integer = 0
@@ -269,7 +271,9 @@
                 Next
             End If 'add sum info
 
-            BinLine = SearchStartEndLine(CodeLoc(2) + 9, lines.Length, lines)
+            BinStartLine = SearchStartEndLine(CodeLoc(2), lines.Length, lines)
+
+            BinLine = SearchStartEndLine(BinStartLine, lines.Length, lines, "Bin Total") + 3
 
             wrtlog(BinLine.ToString, 1)
 
@@ -282,8 +286,8 @@
             wrtlog(Siteline.ToString, 1)
 
         End If
-        Dim linemarks() As Integer = {BinLine, startL, Siteline}
-        Array.Resize(linemarks, 3)
+        Dim linemarks() As Integer = {BinStartLine, BinLine, startL, Siteline}
+        Array.Resize(linemarks, 4)
 
         Return linemarks
 
