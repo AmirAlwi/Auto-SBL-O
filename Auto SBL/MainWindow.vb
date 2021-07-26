@@ -80,7 +80,7 @@ Public Class MainWindow
                 tempS = ""
             End If
 
-            searchname = "*" & tempS & "*"
+            searchname = "*" & tempS & "_*"
 
             'LOG 1
             wrtlog(vbNewLine &
