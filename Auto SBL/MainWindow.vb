@@ -112,9 +112,9 @@ Public Class MainWindow
 
                 LineMark = Readfile(LocSortByTime(i), i) 'Binline, startline , siteline
 
-                ProcessBinD(LineMark(0), SummaryContent, i)
+                ProcessBinD(LineMark(0), LineMark(1), SummaryContent, i)
 
-                ProcessSortD(LineMark(1), LineMark(2), SummaryContent, i)
+                ProcessSortD(LineMark(2), LineMark(3), SummaryContent, i)
 
             End If
         Next

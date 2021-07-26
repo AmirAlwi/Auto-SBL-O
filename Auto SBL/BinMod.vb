@@ -4,27 +4,27 @@
     Dim RawHrdwBin(10, 20) As ClassData
     Dim RawSftwBin(10, 300) As ClassData
 
-    Public Sub ProcessBinD(BinLine As Integer, lines() As String, Index As Integer)
+    Public Sub ProcessBinD(BinStartLine As Integer, BinLine As Integer, lines() As String, Index As Integer)
         ''''''''' log 5 bin data process ''''''''''''''")
         retestqty = 0
         'Splitting Text to var
 
-        For i As Integer = CodeLoc(2) + 11 To BinLine - 1
+        For i As Integer = BinStartLine To BinLine - 1
 
             Dim temp As String() = lines(i).Split(CType(" ", Char()), StringSplitOptions.RemoveEmptyEntries)
             Try
                 If temp(1) = "N/A" Then
 
-                    RawHrdwBin(Index, i - (CodeLoc(2) + 11)) = New ClassData(5, "N/A - error",
+                    RawHrdwBin(Index, i - BinStartLine) = New ClassData(5, "N/A - error",
                                                       Convert.ToInt32(temp(2)), Convert.ToDecimal(temp(3)))
                 ElseIf temp.Length = 5 Then
 
-                    RawHrdwBin(Index, i - (CodeLoc(2) + 11)) = New ClassData(Convert.ToInt32(temp(1)), temp(2).ToString,
+                    RawHrdwBin(Index, i - BinStartLine) = New ClassData(Convert.ToInt32(temp(1)), temp(2).ToString,
                                                        Convert.ToInt32(temp(3)), Convert.ToDecimal(temp(4)))
                 ElseIf temp.Length = 4 Then
 
 
-                    RawHrdwBin(Index, i - (CodeLoc(2) + 11)) = New ClassData(Convert.ToInt32(temp(1)), "N/A",
+                    RawHrdwBin(Index, i - BinStartLine) = New ClassData(Convert.ToInt32(temp(1)), "N/A",
                                                        Convert.ToInt32(temp(2)), Convert.ToDecimal(temp(3)))
                 End If
 
@@ -36,8 +36,8 @@
         Select Case Maininfo(Index + 1, CodeLoc(1)).ToString
 
             Case "1A", "2A"
-                For n As Integer = CodeLoc(2) + 11 To BinLine - 1
-                    HrdwBin(RawHrdwBin(Index, n - (CodeLoc(2) + 11)).Bin - 1).Parts += RawHrdwBin(Index, n - (CodeLoc(2) + 11)).Parts
+                For n As Integer = BinStartLine To BinLine - 1
+                    HrdwBin(RawHrdwBin(Index, n - BinStartLine).Bin - 1).Parts += RawHrdwBin(Index, n - BinStartLine).Parts
                 Next
                 wrtlog(",", 1)
                 For i As Integer = 0 To 4
@@ -45,13 +45,13 @@
                 Next
 
             Case "1B", "2B", "1E", "2E"
-                For i As Integer = CodeLoc(2) + 11 To BinLine - 1
-                    retestqty += RawHrdwBin(Index, i - (CodeLoc(2) + 11)).Parts
+                For i As Integer = BinStartLine To BinLine - 1
+                    retestqty += RawHrdwBin(Index, i - BinStartLine).Parts
                 Next
 
                 Calcretest(Index)
 
-                CompNextSplitB(Maininfo(Index + 1, CodeLoc(1)).ToString, BinLine, Index)
+                CompNextSplitB(Maininfo(Index + 1, CodeLoc(1)).ToString, BinStartLine, BinLine, Index)
 
                 For i As Integer = 0 To 4
                     wrtlog(HrdwBin(i).Parts & ",", 1)
@@ -117,7 +117,7 @@
 
     End Sub
 
-    Private Sub CompNextSplitB(SumC As String, Binline As Integer, index As Integer)
+    Private Sub CompNextSplitB(SumC As String, BinStartLine As Integer, Binline As Integer, index As Integer)
 
         Dim LSplit As Integer = Convert.ToInt32(SumC.Remove(1, 1))
 
@@ -127,14 +127,14 @@
             Next
         End If
 
-        For j As Integer = (CodeLoc(2) + 11) To Binline - 1
+        For j As Integer = BinStartLine To Binline - 1
 
-            If RawHrdwBin(index, j - (CodeLoc(2) + 11)).Bin = 1 Then 'continue bin 1 part count
-                HrdwBin(0).Parts += RawHrdwBin(index, j - (CodeLoc(2) + 11)).Parts
+            If RawHrdwBin(index, j - BinStartLine).Bin = 1 Then 'continue bin 1 part count
+                HrdwBin(0).Parts += RawHrdwBin(index, j - BinStartLine).Parts
             End If
 
-            If RawHrdwBin(index, j - (CodeLoc(2) + 11)).Bin <> 1 And LSplit = 1 Then
-                HrdwBin(RawHrdwBin(index, j - (CodeLoc(2) + 11)).Bin - 1).Parts += RawHrdwBin(index, j - (CodeLoc(2) + 11)).Parts ' bin 2,3,4
+            If RawHrdwBin(index, j - BinStartLine).Bin <> 1 And LSplit = 1 Then
+                HrdwBin(RawHrdwBin(index, j - BinStartLine).Bin - 1).Parts += RawHrdwBin(index, j - BinStartLine).Parts ' bin 2,3,4
             End If
 
         Next
