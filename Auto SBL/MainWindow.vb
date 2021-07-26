@@ -155,11 +155,17 @@ Public Class MainWindow
         ElseIf (e.KeyCode And Not Keys.Modifiers) = Keys.F3 AndAlso e.Modifiers = Keys.Control Then
 
             If ProgName.Text = "123" Then
-                CheckBox1.Enabled = True
-                CheckBox2.Enabled = True
+                If CheckBox2.Enabled = False Then
+                    CheckBox1.Enabled = True
+                    CheckBox2.Enabled = True
+                Else
+                    CheckBox1.Enabled = False
+                    CheckBox2.Enabled = False
+                End If
+
             End If
 
-        End If
+            End If
     End Sub
 
     Private Sub Reset_Click(sender As Object, e As EventArgs) Handles Button2.Click
