@@ -64,6 +64,7 @@ Public Class MainWindow
 
         'set default sel
         ComboBox1.Text = "MMT"
+        ComboBox2.Text = "FT1"
 
     End Sub
 

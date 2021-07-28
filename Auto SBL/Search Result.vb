@@ -16,12 +16,14 @@
         Dim x As Integer = 0
         Dim y As Integer = 0
         Dim lengthofloc As Integer = 0
+        Dim testcode As String = MainWindow.ComboBox2.Text
+        Dim testcodespecial As String = testcode.Remove(1, 1)
 
         '"'''''''''''log 2 search file''''''''''''
         Try
             For Each item As String In My.Computer.FileSystem.GetFiles(filelocation, FileIO.SearchOption.SearchTopLevelOnly, name)
 
-                If Search("Custom", item) And Not Search("FT2_", item) And Not Search("F2_", item) And Not Search("SU_", item) And Not Search("CAL_", item) And Not Search("QA_", item) Then
+                If Search("Custom", item) And (Search(testcode, item) Or Search(testcodespecial, item)) Then
 
                     Dim SearchLocation As String = item.Remove(0, filelocation.Length)
                     Prompt(SearchLocation)
